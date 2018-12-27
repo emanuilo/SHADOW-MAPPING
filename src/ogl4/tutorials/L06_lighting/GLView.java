@@ -18,10 +18,9 @@ import com.jogamp.opengl.GLEventListener;
 public abstract class GLView implements GLEventListener, KeyListener
 {
     protected Scene scene;
-
     
     /** Render the shape (triangle) */
-    private void render(GLAutoDrawable drawable) 
+    public void render(GLAutoDrawable drawable) 
     {
         GL4 gl = drawable.getGL().getGL4bc();
 

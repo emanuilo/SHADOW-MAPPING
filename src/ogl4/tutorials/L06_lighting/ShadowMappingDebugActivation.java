@@ -12,7 +12,7 @@ import ogl4.shader.ShaderProgramActivation;
  *
  * @author emanu
  */
-public class MyActivation extends ShaderProgramActivation {
+public class ShadowMappingDebugActivation extends ShaderProgramActivation {
 
     private final Camera camera;
     private final Light light;
@@ -21,10 +21,8 @@ public class MyActivation extends ShaderProgramActivation {
     private int LightPositionLoc = -1;
     private float[] transformArray = new float[16];
     private float[] lightPosArray = new float[3];
-    
-    private boolean isLightMVP = false;
-    
-    public MyActivation(Camera c, Light l) {
+
+    public ShadowMappingDebugActivation(Camera c, Light l) {
         camera = c;
         light = l;
     }
@@ -38,11 +36,7 @@ public class MyActivation extends ShaderProgramActivation {
 
     @Override
     protected void activateInternal(GL4 gl) {
-        if(isLightMVP)
-            light.GetViewProjection().get(transformArray);
-        else
-            camera.GetViewProjection().get(transformArray);
-        
+        light.GetViewProjection().get(transformArray);
         gl.glUniformMatrix4fv(MVPtransformLoc, 1, false, transformArray, 0);
 
         camera.GetView().get(transformArray);
@@ -53,13 +47,5 @@ public class MyActivation extends ShaderProgramActivation {
         lightPosArray[2] = light.getPosition().z;
         gl.glUniform3fv(LightPositionLoc, 1, lightPosArray, 0);
     }
-    
-    public void setLightMVP(){
-        isLightMVP = true;
-    }
-    
-    public void setCameraMVP(){
-        isLightMVP = false;
-    }
-    
+
 }

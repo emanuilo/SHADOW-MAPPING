@@ -27,7 +27,9 @@ public class LightingShaderDemo
     private static String ThirdPersonViewTitle = "Lighting, ThirdPersonView, ";  // window's title
 
     public static Camera mainCamera = new RotatingCamera();
-    public static Light mainLight = new Light(10, 15, 5);
+//    public static Light mainLight = new Light(100000, 150000, 50000);    
+    public static Light mainLight = new Light(0, 10, 0);
+
     
     /** Constructor */
    public LightingShaderDemo() {}

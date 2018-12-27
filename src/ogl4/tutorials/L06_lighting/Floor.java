@@ -100,7 +100,7 @@ public class Floor extends GraphicsObject {
                 float z = i - half;
                 vertexBuffer.put(x).put(y).put(z);
 //                float randomColor = (float) (Math.random() * 0.2 + 0.7);
-                vertexColorBuffer.put(0.8f).put(0.8f).put(0.8f);
+                vertexColorBuffer.put(0.85f).put(0.85f).put(0.85f);
 //                vertexColorBuffer.put(randomColor).put(randomColor).put(randomColor);
                 vertexNormalBuffer.put(0).put(1).put(0);
             }
