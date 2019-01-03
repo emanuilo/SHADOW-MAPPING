@@ -41,7 +41,7 @@ public class MyShader extends ShaderProgramWrapper{
         
         uniforms = new ArrayList<>();
         uniforms.add("MVPTransform");
-        uniforms.add("MVTransform");
+        uniforms.add("LightSpaceTransform");
         uniforms.add("NormalTransform");
         uniforms.add("ModelTransform");
         uniforms.add("LightPosition");

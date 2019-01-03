@@ -43,12 +43,13 @@ public class MyView extends GLView {
         myShader.buildShader(gl);
         myShader.GetShaderProgram().setActivation(myActivation);
 
-        //creation of a shadow mapping shader
+        //creation of shadow mapping shader
         ShadowMappingActivation shadowMappingActivation = new ShadowMappingActivation(scene.GetCamera(), scene.GetLight());
         shadowMappingShader = new ShadowMappingShader();
         shadowMappingShader.buildShader(gl);
         shadowMappingShader.GetShaderProgram().setActivation(shadowMappingActivation);
         
+        //creation of debug shader for depth buffer rendering
         ShadowMappingDebugActivation shadowMappingDebugActivation = new ShadowMappingDebugActivation(scene.GetCamera(), scene.GetLight());
         shadowMappingDebugShader = new ShadowMappingDebugShader();
         shadowMappingDebugShader.buildShader(gl);
@@ -104,7 +105,6 @@ public class MyView extends GLView {
         gl.glDrawBuffer(GL4.GL_NONE);
         gl.glReadBuffer(GL4.GL_NONE);
         gl.glBindFramebuffer(GL4.GL_FRAMEBUFFER, 0);
-        
     }
     
     @Override
@@ -123,15 +123,18 @@ public class MyView extends GLView {
         scene.display(drawable);
         gl.glBindFramebuffer(GL4.GL_FRAMEBUFFER, 0); //return to the default frame buffer
         
-        //second pass
-        //configure shaders and matrices
+//        //second pass
+//        gl.glViewport(0, 0, 600, 400);
+//        //configure shaders and matrices
 //        myActivation.setCameraMVP();
 //        changeShaders(myShader);
-//        changeShaders(shadowMappingDebugShader); //debug
-//        render the scene
+////        changeShaders(shadowMappingDebugShader); //debug
+//        //render the scene
 //        gl.glActiveTexture(GL4.GL_TEXTURE0); //?
 //        gl.glBindTexture(GL4.GL_TEXTURE_2D, depthMapID);
+//        super.render(drawable);
         
+       
         //rendering depth buffer quad
         changeShaders(shadowMappingDebugShader); //debug
         gl.glActiveTexture(GL4.GL_TEXTURE0); 

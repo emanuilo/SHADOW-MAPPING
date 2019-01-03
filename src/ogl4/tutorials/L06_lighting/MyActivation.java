@@ -17,7 +17,7 @@ public class MyActivation extends ShaderProgramActivation {
     private final Camera camera;
     private final Light light;
     private int MVPtransformLoc = -1;
-    private int MVtransformLoc = -1;
+    private int LightSpaceTransformLoc = -1;
     private int LightPositionLoc = -1;
     private float[] transformArray = new float[16];
     private float[] lightPosArray = new float[3];
@@ -32,7 +32,7 @@ public class MyActivation extends ShaderProgramActivation {
     @Override
     protected void initialize(GL4 gl) {
         MVPtransformLoc = program.getUniformLocation("MVPTransform");
-        MVtransformLoc = program.getUniformLocation("MVTransform");
+        LightSpaceTransformLoc = program.getUniformLocation("LightSpaceTransform");
         LightPositionLoc = program.getUniformLocation("LightPosition");
     }
 
@@ -45,8 +45,8 @@ public class MyActivation extends ShaderProgramActivation {
         
         gl.glUniformMatrix4fv(MVPtransformLoc, 1, false, transformArray, 0);
 
-        camera.GetView().get(transformArray);
-        gl.glUniformMatrix4fv(MVtransformLoc, 1, false, transformArray, 0);
+        light.GetViewProjection().get(transformArray);
+        gl.glUniformMatrix4fv(LightSpaceTransformLoc, 1, false, transformArray, 0);
 
         lightPosArray[0] = light.getPosition().x;
         lightPosArray[1] = light.getPosition().y;

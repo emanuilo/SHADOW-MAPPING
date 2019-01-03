@@ -9,7 +9,7 @@ out vec3 thePosition;
 out vec3 theColor;
 
 uniform mat4 MVPTransform;
-uniform mat4 MVTransform;
+uniform mat4 LightSpaceTransform;
 uniform mat3 NormalTransform;
 uniform vec3 LightPosition;
 uniform mat4 ModelTransform;
